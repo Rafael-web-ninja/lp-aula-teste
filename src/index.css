@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-dark: #070709;
+    --bg-surface: #0f0f13;
+    --text-primary: #FAF8F5;
+    --text-secondary: #A39E93;
+    --accent-gold: #C5A880;
+    --accent-glow: rgba(197, 168, 128, 0.4);
+    --border-subtle: rgba(244, 241, 234, 0.08);
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  body {
+    background-color: #070709;
+    color: #FAF8F5;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  ::selection {
+    background-color: #C5A880;
+    color: #070709;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #070709;
+}
+::-webkit-scrollbar-thumb {
+  background: #222226;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A880;
+}
+
+/* Subtle Film Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Luxury Typography Utilities */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-editorial {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-mono-num {
+  font-family: 'Space Mono', monospace;
+}
+
+/* Ambient Glow & Neon Bronze Effects */
+.glow-gold-subtle {
+  box-shadow: 0 0 25px -5px rgba(197, 168, 128, 0.15);
+}
+
+.glow-gold-medium {
+  box-shadow: 0 0 35px -5px rgba(197, 168, 128, 0.25), 0 0 15px -3px rgba(197, 168, 128, 0.35);
+}
+
+.glow-gold-intense {
+  box-shadow: 0 0 50px -5px rgba(197, 168, 128, 0.4), 0 0 25px -2px rgba(197, 168, 128, 0.5);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 20px rgba(197, 168, 128, 0.4), 0 0 40px rgba(197, 168, 128, 0.2);
+}
+
+/* Luxury Glass Card with Ambient Glow on Hover */
+.luxury-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(20, 20, 25, 0.7) 0%, rgba(11, 11, 14, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(197, 168, 128, 0.35) 0%, transparent 50%, rgba(255, 255, 255, 0.05) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.5s ease;
+}
+
+.luxury-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(197, 168, 128, 0.3);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 35px -5px rgba(197, 168, 128, 0.2);
+}
+
+.luxury-card:hover::before {
+  opacity: 1;
+}
+
+/* Animated Border Button with Moving Light Beam */
+.btn-animated-border {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.btn-animated-border::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 280deg,
+    #C5A880 320deg,
+    #FAF8F5 340deg,
+    #C5A880 360deg
+  );
+  animation: rotateBorder 3.5s linear infinite;
+  z-index: -2;
+}
+
+.btn-animated-border::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: #0d0d11;
+  border-radius: inherit;
+  z-index: -1;
+  transition: background 0.3s ease;
+}
+
+.btn-animated-border:hover::after {
+  background: #17171d;
+}
+
+.btn-animated-border:hover {
+  box-shadow: 0 0 30px -5px rgba(197, 168, 128, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Golden Shimmer Beam for Accent Button */
+.btn-gold-shimmer {
+  position: relative;
+  background: linear-gradient(135deg, #D4BA94 0%, #C5A880 50%, #A98960 100%);
+  color: #070709;
+  font-weight: 600;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px -2px rgba(197, 168, 128, 0.35);
+}
+
+.btn-gold-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  animation: shimmerSweep 4s ease-in-out infinite;
+}
+
+.btn-gold-shimmer:hover {
+  box-shadow: 0 8px 30px -2px rgba(197, 168, 128, 0.6), 0 0 20px rgba(197, 168, 128, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Keyframes */
+@keyframes rotateBorder {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes shimmerSweep {
+  0% { left: -100%; }
+  35% { left: 150%; }
+  100% { left: 150%; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  animation: marquee 38s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Ambient Radial Background Light Spots */
+.spotlight-top {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  max-width: 1100px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.12) 0%, rgba(197, 168, 128, 0.02) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
